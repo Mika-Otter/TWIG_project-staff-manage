@@ -1,0 +1,131 @@
+:root {
+    --color-title: #282841;
+    --color-title-gradiant: linear-gradient(91deg, #6497ff 1.49%, rgba(0, 107, 185, 0.8) 103.33%);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title__section {
+    height: 40vh;
+    width: 95%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.title__ctn {
+    width: 100%;
+}
+h1 {
+    font-family: "Poppins";
+    font-size: 7vw;
+    margin: 0;
+    color: var(--color-title);
+}
+
+h2 {
+    margin: 0;
+    margin-top: -100px;
+    font-family: "Poppins";
+    font-size: 7vw;
+    background: var(--color-title-gradiant);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+span {
+    font-family: "Poppins";
+    font-size: 1.2vw;
+    width: 100%;
+    height: 1.5vw;
+    margin: 0;
+    /* margin-top: -20px; */
+}
+
+.form__ctn {
+    margin-top: -2vh;
+    width: 15vw;
+    border-radius: 23px;
+    height: 26vh;
+    padding: 0 1vw;
+    background-color: var(--color-cards);
+    box-shadow: 0px -1px 12px -3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    padding: 20px;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins";
+    font-size: 0.7vw;
+    font-weight: 400;
+}
+
+.form__input_ctn {
+    padding-top: 20px;
+    height: 4.5;
+    border: none;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form__input_ctn > input {
+    font-size: 0.7vw;
+    font-family: "Poppins";
+    color: var(--color-text-blue);
+    padding-top: 5px;
+    height: 2.5vh;
+    background: none;
+    border: none;
+    border-bottom: 0.05rem solid var(--color-text-blue);
+}
+
+.form__input_ctn > input:focus {
+    border-bottom: 0.15rem solid var(--color-text-blue);
+}
+
+*:focus {
+    outline: none;
+}
+.btn__ctn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+
+#connexionBtn {
+    border: none;
+    width: 8vw;
+    padding: 10px 0;
+    font-size: 0.7vw;
+    background: var(--color-title-gradiant);
+    color: var(--color-cards);
+    border-radius: 50px;
+}
+
+#inscriptionBtn {
+    font-family: "Poppins";
+    border: none;
+    background: none;
+    font-size: 0.6vw;
+
+    color: var(--color-text-blue);
+    transition: 0.5s ease-in-out;
+}
+
+#inscriptionBtn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
