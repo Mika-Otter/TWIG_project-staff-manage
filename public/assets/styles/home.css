@@ -46,6 +46,7 @@ span {
     height: 1.5vw;
     margin: 0;
     /* margin-top: -20px; */
+    color: var(--color-title);
 }
 
 .form__ctn {
@@ -62,12 +63,14 @@ span {
 
 form {
     padding: 20px;
-    height: 20vh;
+    height: 12vh;
     display: flex;
+    /* border: 2px solid blue; */
     flex-direction: column;
     font-family: "Poppins";
     font-size: 0.7vw;
     font-weight: 400;
+    margin-bottom: 40px;
 }
 
 .form__input_ctn {
@@ -77,6 +80,7 @@ form {
     border-radius: 3px;
     display: flex;
     flex-direction: column;
+    color: var(--color-title);
 }
 
 .form__input_ctn > input {
