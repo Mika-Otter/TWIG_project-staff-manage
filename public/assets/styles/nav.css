@@ -1,0 +1,51 @@
+:root {
+    --bg-w: #ebedf2;
+    --square: 7vh;
+}
+
+nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    background-color: var(--bg-w);
+    width: var(--square);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.title > h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+}
+
+.logo__ctn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 40vh;
+}
+
+.home {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.employes {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+    height: var(--square);
+}
