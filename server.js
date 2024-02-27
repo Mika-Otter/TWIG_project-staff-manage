@@ -1,12 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const useRouter = require("./router/mainRouter");
+const userRouter = require("./router/mainRouter");
 require("dotenv").config();
 
 const app = express();
 
 app.use(express.static("./public"));
-app.use(useRouter);
+app.use(express.urlencoded({ extended: true }));
+app.use(userRouter);
 
 app.listen(parseInt(process.env.PORT), (err) => {
     if (!err) {

@@ -1,0 +1,61 @@
+{% extends "./home.twig" %}
+
+{% block style %}
+<link rel="stylesheet" href="./assets/styles/subscribe.css" />
+{% endblock %}
+
+
+{% block title %}
+    <title>{{title}}</title>
+{% endblock %}
+
+{% block section %}
+<section class="subscribe__big_box">
+    <div class="subscribe__box">
+        <div class="subscribe__form__ctn">
+            <form>
+                <div class="form__input_ctn">
+                    <label for="name">Nom</label>
+                    <input type="text" name="name" id="name" />
+                    {% if error %}
+                        <p>{{error.errors.name.message}}</p>
+                    {% endif %}
+                </div>
+                <div class="form__input_ctn">
+                    <label for="firstname">Prénom</label>
+                    <input type="text" name="firstname" id="firstname" />
+                       {% if error %}
+                        <p>{{error.errors.firstName.message}}</p>
+                       {% endif %}
+                </div>
+                <div class="form__input_ctn">
+                    <label for="mail">Adresse e-mail</label>
+                    <input type="text" name="mail" id="mail" />
+                       {% if error %}
+                           <p>{{error.errors.mail.message}}</p>
+                       {% endif %}
+                </div>
+                <div class="form__input_ctn">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" name="password" id="password" />
+                       {% if error %}
+                           <p>{{error.errors.password.message}}</p>
+                       {% endif %}
+                </div>
+                <div class="form__input_ctn">
+                    <label for="confirmPassword">Confirmer le mot de passe</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" />
+                       {% if error %}
+                            <p>{{error.errors.confirmPassword.message}}</p>
+                       {% endif %}
+                </div>
+                 <div class="btn__ctn">
+                    <button type="button" id="connexionBtn">S'incrire</button>
+                    <a href="/home" id="inscriptionBtn">Retour à la connexion</a>
+                </div>
+            </form>
+           
+        </div>
+    </div>
+</section>
+{% endblock %}

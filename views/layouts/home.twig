@@ -6,33 +6,36 @@
 
 {% block main %}
 <main>
-    <section class="title__section">
+    <div class="title__section">
         <div class="title__ctn">
             <h1>Welcome,</h1>
             <h2>in Empleez !</h2>
         </div>
         <span>Manage your team and more.</span>
-    </section>
+    </div>
+    {% block section %}
     <section class="connexion__big_box">
         <div class="connexion__box">
             <div class="form__ctn">
             
-                <form>
+                <form method="get" action="/subscribe">
                     <div class="form__input_ctn">
-                        <label for="username">Nom d'utilisateur</label>
-                        <input type="text" name="username" id="username" />
+                        <label for="mail">E-mail</label>
+                        <input type="text" name="mail" id="mail" />
                     </div>
                     <div class="form__input_ctn">
                         <label for="password">Mot de passe</label>
                         <input type="password" name="password" id="password" />
                     </div>
+                    <div class="btn__ctn">
+                        <button type="submit" id="connexionBtn">Se connecter</button>
+                        <a href="/subscribe" id="inscriptionBtn">S'incrire</a>
+                    </div>
                 </form>
-                <div class="btn__ctn">
-                    <button type="submit" id="connexionBtn">Se connecter</button>
-                    <button type="button" id="inscriptionBtn">S'incrire</button>
-                </div>
+                
             </div>
         </div>
     </section>
+    {% endblock %}
 </main>
 {% endblock %}
