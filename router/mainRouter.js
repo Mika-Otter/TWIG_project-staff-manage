@@ -1,4 +1,5 @@
 const userRouter = require("express").Router();
+const userModel = require("../public/assets/js/userModel");
 
 userRouter.get("/home", async (req, res) => {
     try {
@@ -20,21 +21,20 @@ userRouter.get("/subscribe", async (req, res) => {
     }
 });
 
+userRouter.post("/subscribe", async (req, res) => {
+    try {
+        const user = new userModel(req.body);
+        await user.save();
+        console.log("User Added");
+        res.redirect("/home");
+    } catch (error) {
+        console.log("nooop");
+        console.log(error.errors);
+        res.render("layouts/subscribe.twig", {
+            error: error.errors,
+            title: "Empleez S'inscrire",
+        });
+    }
+});
+
 module.exports = userRouter;
-
-// module.exports = Subscribe;
-
-// const Subscribe = async (req, res) => {
-//     try {
-//         const user = new userModel(req.body);
-//         await user.save();
-//         res.redirect("/login");
-//     } catch (error) {
-//         res.render("layouts/subscribe.twig", {
-//             error: error.errors,
-//             title: "Empleez S'inscrire",
-//         });
-//     }
-// };
-
-// userRouter.get("/subscribe", Subscribe);

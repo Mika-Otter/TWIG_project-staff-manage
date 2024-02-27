@@ -95,6 +95,12 @@ form {
     color: var(--color-title);
 }
 
+.form__input_ctn > p {
+    height: 13px;
+    font-size: 9px;
+    color: rgb(239, 61, 61);
+}
+
 .form__input_ctn > input {
     font-size: 0.7vw;
     font-family: "Poppins";
