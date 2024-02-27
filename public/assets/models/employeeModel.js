@@ -1,24 +1,37 @@
 const mongoose = require("mongoose");
+const userModel = require("./userModel");
 
 const employeeSchema = mongoose.Schema({
-    name: {
+    employeeName: {
         type: String,
         required: [true, "Le nom est requis"],
     },
-    firstname: {
+    employeeFirstName: {
         type: String,
         required: [true, "Le prénom est requis"],
     },
-    position: {
+    employeePosition: {
         type: String,
         required: [true, "Le poste est requis"],
     },
-    salary: {
-        type: Number,
-    },
-    modality: {
+    employeeSalary: {
         type: String,
     },
+    employeeStatu: {
+        type: String,
+    },
+});
+
+employeeSchema.pre("save", async function (next) {
+    try {
+        await userModel.updateOne({ _id: this._user }, { $addToSet: { employeeList: this._id } });
+        console.log(this._user.employeeList);
+        console.log("It's save !");
+        next();
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
 });
 
 const employeeModel = mongoose.model("employee", employeeSchema);

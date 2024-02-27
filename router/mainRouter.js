@@ -94,4 +94,28 @@ employeeRouter.get("/test", async (req, res) => {
     });
 });
 
+employeeRouter.post("/addEmployee", authguard, async (req, res) => {
+    try {
+        let employee = new employeeModel(req.body);
+        employee._user = req.session.user._id;
+        await employee.save();
+        console.log("yees");
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.log(error);
+        res.render("layouts/addEmployee.twig", {
+            title: "Empleez - Ajouter un-e employé-e",
+            user: await userModel.findById(req.session.user._id),
+            error: error,
+        });
+    }
+});
+
+userRouter.get("/dashboard", authguard, async (req, res) => {
+    res.render("pages/dashboard.twig", {
+        user: await userModel.findById(req.session.user._id).populate("employeeList"),
+        title: "Empleez - Dashboard.twig",
+    });
+});
+
 module.exports = { userRouter, employeeRouter };

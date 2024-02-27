@@ -26,6 +26,37 @@
     <section class="cardsBox">
     {% block div %}
      {% endblock %}
+     {% for employee in user.employeeList %}
+     <div class="form__ctn">
+        <div id="ImgNameFirstName">
+            <img src="./assets/img/token.png" alt="token" />
+            <div class="name__ctn">
+            <p>{{employee.name}}</p>
+            <p>{{employee.firstName}}</p>
+        </div>
+        <div class="position__ctn"><span>{{employee.position}}</span></div>
+    
+        <div class="details">
+            <span>{{employee.salary}}</span>
+            <span>|</span>
+            <span>{{employee.statu}}</span>
+        </div>
+
+        <div class="action__box">
+         <div class="blame__ctn">
+                <a>
+                    <img src="./assets/img/blame-grey.png" alt="blame-grey" id="blame">
+                </a>    
+            </div>
+            </div>
+            <div class="surveillance__ctn">
+                <a>
+                    <img src="./assets/img/Surveillance.png" alt="surveillance" id="surveillance">
+                </a>
+            </div>       
+        </div>
+</div>
+     {% endfor %}
         <div class="cards"></div>
     </section>
    
