@@ -54,11 +54,19 @@ h4 {
 .form__ctn {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     border-radius: 23px;
     width: 16vw;
-    height: 12vw;
+    height: 13vw;
     background-color: var(--color-cards);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
 }
 
 #ImgNameFirstName {
@@ -103,7 +111,7 @@ h4 {
 
 .position__ctn {
     width: 100%;
-    height: 55%;
+    height: 35%;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -125,7 +133,7 @@ h4 {
 .details {
     margin-top: -20px;
     width: 100%;
-    height: 30%;
+    height: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,4 +163,40 @@ h4 {
     font-size: 1.5vw;
     color: var(--color-text-blue);
     font-weight: 900;
+}
+
+.action__box {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 27%;
+    width: 90%;
+    margin-bottom: 5px;
+}
+
+#surveillance {
+    width: 1vw;
+    height: 1vw;
+}
+
+.surveillance__ctn {
+}
+
+.valid_delete__ctn {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+    width: 50%;
+}
+
+#validate,
+#delete {
+    width: 1.3vw;
+    height: 1.3vw;
+}
+
+#blame {
+    width: 1vw;
+    height: 1vw;
 }
