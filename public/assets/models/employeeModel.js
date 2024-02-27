@@ -25,8 +25,6 @@ const employeeSchema = mongoose.Schema({
 employeeSchema.pre("save", async function (next) {
     try {
         await userModel.updateOne({ _id: this._user }, { $addToSet: { employeeList: this._id } });
-        console.log(this._user.employeeList);
-        console.log("It's save !");
         next();
     } catch (error) {
         console.log(error);

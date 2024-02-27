@@ -51,10 +51,12 @@ const userSchema = mongoose.Schema({
             message: "Les mots de passe ne sont pas identiques.",
         },
     },
-    employeeList: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "employee",
-    },
+    employeeList: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "employee",
+        },
+    ],
 });
 
 userSchema.pre("validate", async function (next) {

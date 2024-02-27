@@ -31,15 +31,16 @@
         <div id="ImgNameFirstName">
             <img src="./assets/img/token.png" alt="token" />
             <div class="name__ctn">
-            <p>{{employee.name}}</p>
-            <p>{{employee.firstName}}</p>
+            <p>Nom : {{ employee.employeeName }}</p>
+            <p>{{ employee.employeeFirstName }}</p>
         </div>
-        <div class="position__ctn"><span>{{employee.position}}</span></div>
+        </div>
+        <div class="position__ctn"><span id="employeePosition">{{ employee.employeePosition }}</span></div>
     
         <div class="details">
-            <span>{{employee.salary}}</span>
+            <p>{{ employee.employeeSalary }}</p>
             <span>|</span>
-            <span>{{employee.statu}}</span>
+            <p>{{ employee.employeeStatu }}</p>
         </div>
 
         <div class="action__box">

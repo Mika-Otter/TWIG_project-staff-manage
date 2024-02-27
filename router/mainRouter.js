@@ -72,14 +72,6 @@ userRouter.post("/home", async (req, res) => {
     }
 });
 
-//Go to dashboard session________________________________________________
-userRouter.get("/dashboard", authguard, async (req, res) => {
-    res.render("pages/dashboard.twig", {
-        user: await userModel.findById(req.session.user._id),
-        title: `Dashboard - ${req.session.user.name}`,
-    });
-});
-
 //Employe Adding_________________________________________________________
 employeeRouter.get("/addEmployee", authguard, async (req, res) => {
     res.render("layouts/addEmployee.twig", {
@@ -88,18 +80,18 @@ employeeRouter.get("/addEmployee", authguard, async (req, res) => {
     });
 });
 
-employeeRouter.get("/test", async (req, res) => {
-    res.render("layouts/addEmployee.twig", {
-        title: "Empleez - Ajouter un-e employé-e",
-    });
-});
+// employeeRouter.get("/test", async (req, res) => {
+//     res.render("layouts/addEmployee.twig", {
+//         title: "Empleez - Ajouter un-e employé-e",
+//     });
+// });
 
 employeeRouter.post("/addEmployee", authguard, async (req, res) => {
     try {
         let employee = new employeeModel(req.body);
         employee._user = req.session.user._id;
         await employee.save();
-        console.log("yees");
+        console.log("Employee Added");
         res.redirect("/dashboard");
     } catch (error) {
         console.log(error);
@@ -112,10 +104,22 @@ employeeRouter.post("/addEmployee", authguard, async (req, res) => {
 });
 
 userRouter.get("/dashboard", authguard, async (req, res) => {
-    res.render("pages/dashboard.twig", {
-        user: await userModel.findById(req.session.user._id).populate("employeeList"),
-        title: "Empleez - Dashboard.twig",
-    });
+    try {
+        const userWithEmployees = await userModel
+            .findById(req.session.user._id)
+            .populate("employeeList");
+        console.log(userWithEmployees);
+        res.render("pages/dashboard.twig", {
+            user: userWithEmployees,
+            title: "Empleez - Dashboard.twig",
+        });
+    } catch (error) {
+        console.log(error);
+        res.render("pages/dashboard.twig", {
+            title: "Empleez - Error",
+            error: error,
+        });
+    }
 });
 
 module.exports = { userRouter, employeeRouter };
