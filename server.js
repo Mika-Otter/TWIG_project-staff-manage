@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const session = require("express-session");
+const session = require("express-session");
 const userRouter = require("./router/mainRouter");
 require("dotenv").config();
 
@@ -8,13 +8,13 @@ const app = express();
 
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: true }));
-// app.use(
-//     session({
-//         secret: "secret_key",
-//         resave: true,
-//         saveUninitialized: true,
-//     })
-// );
+app.use(
+    session({
+        secret: "secret_key",
+        resave: true,
+        saveUninitialized: true,
+    })
+);
 app.use(userRouter);
 
 app.listen(parseInt(process.env.PORT), (err) => {

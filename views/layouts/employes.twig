@@ -1,0 +1,21 @@
+{% block style %}
+<link rel="stylesheet" href="">
+{% endblock %}
+
+
+{% block main %}
+<main>
+    <h4>Liste des employés</h4>
+    <div class="filter__box">
+        <label for="filter__box">Filter :</label>
+        <select name="filter" id="filter__box">
+            <option value="poste">Poste</option>
+            <option value="salary">Salaires</option>
+            <option value="salary">Nom A-Z</option>
+        </select>
+    </div>
+    <section class="cardsBox">
+        <div class="cards"></div>
+    </section>
+</main>
+{% endblock %}

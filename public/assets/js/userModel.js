@@ -53,35 +53,31 @@ const userSchema = mongoose.Schema({
     },
 });
 
-// userSchema.pre("validate", function (next) {
-//     const self = this;
-//     const checkEmail = async () => {
-//         try {
-//             const existingUser = await self.constructor.findOne({ mail: self.mail });
-//             if (existingUser) {
-//                 self.invalidate("email", "Cet email est déjà enregistré.");
-//             }
-//             next();
-//         } catch (error) {
-//             next(error);
-//         }
-//     };
+userSchema.pre("validate", async function (next) {
+    try {
+        const existingUser = await this.constructor.findOne({ mail: this.mail });
+        if (existingUser) {
+            this.invalidate("mail", "Cet email est déjà enregistré.");
+        }
+        next();
+    } catch (error) {
+        next(error);
+    }
+});
 
-//     checkEmail();
-// });
+userSchema.pre("save", function (next) {
+    if (!this.isModified("password")) {
+        return next();
+    }
 
-// userSchema.pre("save", (next) => {
-//     if (!this.isModified("password")) {
-//         return next();
-//     }
-//     bcrypt.hash(this.password, 10, (error, hash) => {
-//         if (error) {
-//             return next(error);
-//         }
-//         this.password = hash;
-//         next();
-//     });
-// });
+    bcrypt.hash(this.password, 10, (error, hash) => {
+        if (error) {
+            return next(error);
+        }
+        this.password = hash;
+        next();
+    });
+});
 
 const userModel = mongoose.model("Users", userSchema);
 module.exports = userModel;
