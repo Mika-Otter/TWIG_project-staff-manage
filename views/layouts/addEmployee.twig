@@ -1,0 +1,45 @@
+{% extends "../pages/dashboard.twig" %} {% block style %}
+<link rel="stylesheet" href="./assets/styles/addEmployee.css" />
+{% endblock %} {% block div %}
+<div class="form__ctn">
+    <form>
+        <div id="ImgNameFirstName">
+            <img src="./assets/img/token.png" alt="token" />
+            <div class="name__ctn">
+            <input type="text" name="employeeName" id="employeeName" placeholder="Nom" />
+            <input
+                type="text"
+                name="employeeFirstName"
+                id="employeeFirstName"
+                placeholder="Prénom"
+            /></div>
+            
+        </div>
+        <div class="position__ctn"> <input type="text" name="employeePosition" id="employeePosition" placeholder="Poste" /></div>
+    
+        <div class="details">
+            <input type="text" name="employeeSalary" id="employeeSalary" placeholder="Salaire" />
+            <span>|</span>
+            <input type="text" name="employeeStatu" id="employeeStatu" placeholder="Statu" />
+        </div>
+
+        <div class="action__box">
+            <div class="delete">
+                <a>
+                    <img src="" alt="">
+                </a>
+            </div>
+            <div class="add">
+                <a>
+                    <img src="" alt="">
+                </a>
+            </div class="surveillance">
+                <a>
+                    <img src="./assets/img/Surveillance.png" alt="surveillance">
+                </a>
+            <div>
+        </div>
+        
+    </form>
+</div>
+{% endblock %}

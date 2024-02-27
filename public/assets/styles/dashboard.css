@@ -1,0 +1,46 @@
+h4 {
+    font-family: "Poppins";
+    color: var(--color-text-dashboard);
+    font-size: 1.3vw;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.filter__box {
+    width: 10vw;
+    height: 2vh;
+    background-color: var(--color-cards);
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-family: "Poppins";
+    font-family: 0.3vw;
+}
+
+.logo__add {
+    display: flex;
+    width: 15vw;
+    height: 3vh;
+}
+
+.add__employee {
+    margin-top: 3vh;
+    width: 20vw;
+    height: 2vh;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text-dashboard);
+}
+
+.logo__add a > img {
+    width: 70px;
+    height: 70px;
+}
+
+.logo__add a > span {
+    font-family: "Poppins";
+    color: var(--color-text-dashboard);
+    font-weight: 400;
+    font-size: 1vw;
+}

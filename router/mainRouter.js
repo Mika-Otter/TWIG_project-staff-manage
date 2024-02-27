@@ -88,5 +88,10 @@ employeeRouter.get("/addEmployee", authguard, async (req, res) => {
     });
 });
 
-module.exports = userRouter;
-module.exports = employeeRouter;
+employeeRouter.get("/test", async (req, res) => {
+    res.render("layouts/addEmployee.twig", {
+        title: "Empleez - Ajouter un-e employé-e",
+    });
+});
+
+module.exports = { userRouter, employeeRouter };

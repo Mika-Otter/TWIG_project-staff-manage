@@ -1,8 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
-const userRouter = require("./router/mainRouter");
-const employeeRouter = require("./router/mainRouter");
+const { userRouter, employeeRouter } = require("./router/mainRouter");
 require("dotenv").config();
 
 const app = express();
@@ -14,6 +13,7 @@ app.use(
         secret: "secret_key",
         resave: true,
         saveUninitialized: true,
+        cookie: { maxAge: 60 * 60 * 1000 },
     })
 );
 app.use(userRouter);
