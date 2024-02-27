@@ -1,5 +1,7 @@
-{% extends "./home.twig" %}
-
+{% extends "../pages/home.twig" %}
+{% block title %}
+<title>{{title}}</title>
+{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="./assets/styles/subscribe.css" />
 {% endblock %}

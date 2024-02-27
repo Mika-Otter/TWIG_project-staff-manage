@@ -1,5 +1,7 @@
+{% extends "../base.twig" %}
+
 {% block style %}
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="./assets/styles/dashboard.css">
 {% endblock %}
 
 
@@ -7,7 +9,7 @@
 <main>
     <h4>Liste des employés</h4>
     <div class="filter__box">
-        <label for="filter__box">Filter :</label>
+        <label for="filter__box">Filtre :</label>
         <select name="filter" id="filter__box">
             <option value="poste">Poste</option>
             <option value="salary">Salaires</option>

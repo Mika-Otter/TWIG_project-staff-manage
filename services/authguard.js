@@ -1,4 +1,4 @@
-const userModel = require("../public/assets/js/userModel");
+const userModel = require("../public/assets/models/userModel");
 
 const authguard = async (req, res, next) => {
     try {
@@ -11,7 +11,7 @@ const authguard = async (req, res, next) => {
         throw new Error("Utilisateur non connecté");
     } catch (error) {
         console.log(error.message);
-        res.status(401).render("layouts/home.twig", {
+        res.status(401).render("pages/home.twig", {
             title: "Empleez",
             errorAuth: error.message,
         });

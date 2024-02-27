@@ -1,12 +1,14 @@
 const userRouter = require("express").Router();
-const userModel = require("../public/assets/js/userModel");
+const userModel = require("../public/assets/models/userModel");
+const employeeModel = require("../public/assets/models/employeeModel");
+const employeeRouter = require("express").Router();
 const authguard = require("../services/authguard");
 const bcrypt = require("bcrypt");
 
 //Go to home__________________________________________
 userRouter.get("/home", async (req, res) => {
     try {
-        res.render("layouts/home.twig", {
+        res.render("pages/home.twig", {
             title: "Empleez",
         });
     } catch (error) {
@@ -63,11 +65,28 @@ userRouter.post("/home", async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        res.render("layouts/home.twig", {
+        res.render("pages/home.twig", {
             title: "Empleez - Error",
             error: error,
         });
     }
 });
 
+//Go to dashboard session________________________________________________
+userRouter.get("/dashboard", authguard, async (req, res) => {
+    res.render("pages/dashboard.twig", {
+        user: await userModel.findById(req.session.user._id),
+        title: `Dashboard - ${req.session.user.name}`,
+    });
+});
+
+//Employe Adding_________________________________________________________
+employeeRouter.get("/addEmployee", authguard, async (req, res) => {
+    res.render("layouts/addEmployee.twig", {
+        title: "Empleez - Ajouter un-e employé-e",
+        user: await userModel.findById(req.session.user._id),
+    });
+});
+
 module.exports = userRouter;
+module.exports = employeeRouter;
