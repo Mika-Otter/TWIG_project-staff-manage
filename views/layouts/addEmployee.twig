@@ -6,13 +6,12 @@
 {% endblock %} 
 
 {% block div %}
-<div class="form__ctn">
-    <form method="post" {% if employee %} action="/updateEmployee/{{employee.id}}" {% else %} action= "/addEmployee" {% endif %}>
+<div class="form__ctn" >
+    <form method="post" {% if employee %} action="/updateEmployee/{{employee.id}}" {% else %} action= "/addEmployee" {% endif %} id="addEmployeeForm">
         <div id="ImgNameFirstName">
             <img src="/assets/img/token.png" alt="token" />
             <div class="name__ctn">
-            <input type="text" name="employeeName" id="employeeName" placeholder="Nom" {% if employee %} value={{employee.employeeName}} {% endif %}/>
-            <input
+             <input
                 type="text"
                 name="employeeFirstName"
                 id="employeeFirstName"
@@ -20,7 +19,9 @@
                 {% if employee %}
                 value={{employee.employeeFirstName}}
                 {% endif %}
-            /></div>
+            />
+            <input type="text" name="employeeName" id="employeeName" placeholder="Nom" {% if employee %} value={{employee.employeeName}} {% endif %}/>
+           </div>
             
         </div>
         <div class="position__ctn"> <input type="text" name="employeePosition" id="employeePosition" placeholder="Poste" {% if employee %} value={{employee.employeePosition}}  {% endif %}/></div>
@@ -46,7 +47,7 @@
                 {% else %}
                     <img src="/assets/img/blame-grey.png" alt="blame-red" id="blame">  
                 {% endif %}
-             {% if (employee.employeeBlame > 1) and employee %}
+             {% if (employee.employeeBlame > 0) and employee %}
             <div class="blame__span">
                 <span>-</span>
             </div>

@@ -35,7 +35,6 @@ userRouter.post("/subscribe", async (req, res) => {
         console.log("User Added");
         res.redirect("/home");
     } catch (error) {
-        console.log("nooop");
         console.log(error);
         res.render("layouts/subscribe.twig", {
             error: error.errors,
@@ -48,14 +47,10 @@ userRouter.post("/subscribe", async (req, res) => {
 userRouter.post("/home", async (req, res) => {
     console.log("ReqBody : ", req.body);
     try {
-        console.log("test");
         let user = await userModel.findOne({ mail: req.body.mail });
-        console.log(user);
-
         if (user) {
             if (await bcrypt.compare(req.body.password, user.password)) {
                 req.session.user = user;
-                console.log("yes");
                 res.redirect("/dashboard");
             } else {
                 throw { password: "Mauvais mot de passe" };
@@ -72,11 +67,11 @@ userRouter.post("/home", async (req, res) => {
     }
 });
 
-//Employe Adding______________________________________________________
+//Employee Adding______________________________________________________
 employeeRouter.get("/addEmployee", authguard, async (req, res) => {
     res.render("layouts/addEmployee.twig", {
         title: "Empleez - Ajouter un-e employé-e",
-        user: await userModel.findById(req.session.user._id),
+        user: await userModel.findById(req.session.user._id).populate("employeeList"),
     });
 });
 
@@ -85,7 +80,6 @@ employeeRouter.post("/addEmployee", authguard, async (req, res) => {
         let employee = new employeeModel(req.body);
         employee._user = req.session.user._id;
         await employee.save();
-        console.log("Employee Added");
         res.redirect("/dashboard");
     } catch (error) {
         console.log(error);
@@ -103,7 +97,7 @@ userRouter.get("/dashboard", authguard, async (req, res) => {
         const userWithEmployees = await userModel
             .findById(req.session.user._id)
             .populate("employeeList");
-        console.log(userWithEmployees);
+        // console.log(userWithEmployees);
         res.render("pages/dashboard.twig", {
             user: userWithEmployees,
             title: "Empleez - Dashboard.twig",
@@ -114,6 +108,65 @@ userRouter.get("/dashboard", authguard, async (req, res) => {
             title: "Empleez - Error",
             error: error,
         });
+    }
+});
+
+// Sort by Name AZ________________________________________________
+
+userRouter.get("/dashboard/filterName", authguard, async (req, res) => {
+    try {
+        const userWithEmployees = await userModel
+            .findById(req.session.user._id)
+            .populate("employeeList");
+
+        userWithEmployees.employeeList.sort((a, b) => {
+            const nameA = a.employeeName;
+            const nameB = b.employeeName;
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+            return 0;
+        });
+        res.render("pages/dashboard.twig", {
+            user: userWithEmployees,
+            title: "Empleez - Dashboard Filter",
+        });
+    } catch (error) {
+        console.error(error);
+        res.redirect("/dashboard");
+    }
+});
+
+// Sort by position AZ______________________________________________
+
+userRouter.get("/dashboard/filterPosition", async (req, res) => {
+    try {
+        const userWithEmployees = await userModel
+            .findById(req.session.user._id)
+            .populate("employeeList");
+
+        userWithEmployees.employeeList.sort((a, b) => {
+            const posA = a.employeePosition.toUpperCase();
+            const posB = b.employeePosition.toUpperCase();
+
+            if (posA < posB) {
+                return -1;
+            }
+            if (posA > posB) {
+                return 1;
+            }
+            return 0;
+        });
+        res.render("pages/dashboard.twig", {
+            user: userWithEmployees,
+            title: "Empleez - Dashboard Filter",
+        });
+    } catch (error) {
+        console.error(error);
+        res.redirect("/dashboard");
     }
 });
 
@@ -137,7 +190,7 @@ employeeRouter.get("/deleteEmployee/:employeeid", authguard, async (req, res) =>
 employeeRouter.get("/modifyEmployee/:employeeid", authguard, async (req, res) => {
     try {
         let employee = await employeeModel.findById(req.params.employeeid);
-        console.log(employee);
+        // console.log(employee);
         res.render("layouts/addEmployee.twig", {
             title: "Empleez - Modifier un employé",
             user: await userModel.findById(req.session.user._id),

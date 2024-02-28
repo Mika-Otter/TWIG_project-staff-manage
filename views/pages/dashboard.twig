@@ -11,10 +11,27 @@
   
         <label for="filter__box">Filtre :</label>
         <select name="filter" id="filter__box">
-            <option value="poste">Poste</option>
-            <option value="salary">Salaires</option>
-            <option value="salary">Nom A-Z</option>
+            <option value="none">Aucun</option>
+            <option value="position">Poste</option>
+            <option value="name">Nom</option>
         </select>
+{% block scripts %}
+    <script>
+      let filter = document.getElementById('filter__box');
+      filter.addEventListener("change", () => {
+            let filterValue = filter.value;
+            console.log("heelo")
+            console.log(filter.value)
+            if (filterValue === 'name') {
+                window.location.href = '/dashboard/filterName?filter=name';
+            } else if (filterValue === "position") {
+                window.location.href = '/dashboard/filterPosition?filter=position'; 
+            }else {
+               window.location.href = "/dashboard"
+            }
+      });
+    </script>
+{% endblock %}
     </div>
     <div class="logo__add">
         <a href="/addEmployee" class="add__employee">
@@ -32,8 +49,9 @@
         <div id="ImgNameFirstName">
             <img src="/assets/img/token.png" alt="token" />
             <div class="name__ctn">
-            <p>{{ employee.employeeName }}</p>
             <p>{{ employee.employeeFirstName }}</p>
+            <p>{{ employee.employeeName }}</p>
+            
         </div>
         </div>
         <div class="position__ctn"><span id="employeePosition">{{ employee.employeePosition }}</span></div>
