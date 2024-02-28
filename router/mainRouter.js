@@ -154,6 +154,27 @@ employeeRouter.get("/modifyEmployee/:employeeid", authguard, async (req, res) =>
     }
 });
 
+// Add Blame___________________________________________________________
+
+employeeRouter.get("/addBlame/:employeeid", authguard, async (req, res) => {
+    try {
+        console.log("hello");
+        await employeeModel.findByIdAndUpdate(
+            req.params.employeeid,
+            { $inc: { employeeBlame: 1 } },
+            { new: true }
+        );
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.error(error);
+        res.render("pages/dashboard.twig", {
+            errorMessage: "Une erreur dans l'ajout de blame a été détectée.",
+            user: await userModel.findById(req.session.user._id),
+            title: "Empleez - Dashboard",
+        });
+    }
+});
+
 module.exports = { userRouter, employeeRouter };
 
 // END ===============================================================

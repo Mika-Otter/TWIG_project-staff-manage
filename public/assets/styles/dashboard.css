@@ -231,17 +231,18 @@ h4 {
 
 .action__box {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     height: 24%;
     width: 90%;
-    margin-bottom: 10px;
+    margin-top: 1vh;
+
     /* border: 2px solid rgb(159, 252, 108); */
 }
 
 #surveillance {
+    /* border: 2px solid red; */
     width: 1vw;
-    height: 1vw;
 }
 
 .modify__ctn {
@@ -265,4 +266,9 @@ h4 {
 #blame {
     width: 1vw;
     height: 1vw;
+}
+
+.blame__ctn {
+    font-family: "Poppins";
+    font-size: 1vw;
 }

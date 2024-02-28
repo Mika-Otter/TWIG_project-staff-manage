@@ -20,6 +20,9 @@ const employeeSchema = mongoose.Schema({
     employeeStatu: {
         type: String,
     },
+    employeeBlame: {
+        type: Number,
+    },
 });
 
 employeeSchema.pre("save", async function (next) {

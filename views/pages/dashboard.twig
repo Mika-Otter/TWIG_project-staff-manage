@@ -1,5 +1,9 @@
 {% extends "../base.twig" %}
 
+{% block style %}
+ <link rel="stylesheet" href="/assets/styles/dashboard.css">
+{% endblock %}
+
 {% block main %}
 <main>
     <h4>Liste des employés</h4>
@@ -42,9 +46,24 @@
 
         <div class="action__box">
             <div class="blame__ctn">
-                <a href="/addBlame">
-                    <img src="/assets/img/blame-grey.png" alt="blame-grey" id="blame">
-                </a>    
+                {% if (employee.employeeBlame == 0) %}
+                <a href="/addBlame/{{ employee.id }}">
+                    <img src="/assets/img/blame-grey.png" alt="blame-grey" id="blame">  
+                </a>
+                {% elseif (employee.employeeBlame == 1) %}
+                <a href="/addBlame/{{ employee.id }}">
+                    <img src="/assets/img/blame-orange.png" alt="blame-orange" id="blame">  
+                </a>
+                {% elseif (employee.employeeBlame == 2) %}
+                <a href="/addBlame/{{ employee.id }}">
+                    <img src="/assets/img/blame-red.png" alt="blame-red" id="blame">  
+                </a>
+                {% else %}
+                 <a href="/addBlame/{{ employee.id }}">
+                    <img src="/assets/img/blame-grey.png" alt="blame-red" id="blame">  
+                </a>
+                {% endif %}
+       
             </div>
             <div class="modify__ctn">
                 <a href="/modifyEmployee/{{employee.id}}" id="modify__link">
@@ -52,9 +71,16 @@
                 </a>
             </div>
             <div class="surveillance__ctn">
-                <a href="/addSurveillance">
-                    <img src="/assets/img/Surveillance.png" alt="surveillance" id="surveillance">
-                </a>
+                {% if (employee.employeeBlame == 0) %}
+                    <img src="/assets/img/Surveillance.png" alt="surveillance" id="surveillance" />
+                {% elseif (employee.employeeBlame == 1) %}
+                    <img src="/assets/img/surveillance-orange.png" alt="surveillance" id="surveillance" />
+                {% elseif (employee.employeeBlame == 2) %}
+                    <img src="/assets/img/surveillance-red.png" alt="surveillance" id="surveillance" />
+                {% else %}
+                    <img src="/assets/img/Surveillance.png" alt="surveillance" id="surveillance" />
+                {% endif %}
+                
             </div>       
         </div>
 </div>
