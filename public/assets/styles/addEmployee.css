@@ -46,9 +46,34 @@ form {
     font-weight: 900;
 }
 
+.action__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 24%;
+    width: 90%;
+    margin-top: 1vh;
+
+    /* border: 2px solid rgb(159, 252, 108); */
+}
+
+.blame__ctn {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    /* border: 2px solid burlywood; */
+}
+
+.blame__span {
+    margin: 0;
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 1vw;
+    color: var(--color-text-blue);
+}
+
 #surveillance {
     width: 1vw;
-    height: 1vw;
 }
 
 .valid_delete__ctn {

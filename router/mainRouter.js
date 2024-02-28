@@ -154,8 +154,21 @@ employeeRouter.get("/modifyEmployee/:employeeid", authguard, async (req, res) =>
     }
 });
 
-// Add Blame___________________________________________________________
+employeeRouter.post("/updateEmployee/:employeeid", authguard, async (req, res) => {
+    try {
+        let updatedEmployee = await employeeModel.findOneAndUpdate(
+            { _id: req.params.employeeid },
+            { $set: req.body },
+            { new: true }
+        );
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.error(error);
+        res.redirect("/dashboard");
+    }
+});
 
+// Add Blame___________________________________________________________
 employeeRouter.get("/addBlame/:employeeid", authguard, async (req, res) => {
     try {
         console.log("hello");
@@ -165,6 +178,31 @@ employeeRouter.get("/addBlame/:employeeid", authguard, async (req, res) => {
             { new: true }
         );
         res.redirect("/dashboard");
+    } catch (error) {
+        console.error(error);
+        res.render("pages/dashboard.twig", {
+            errorMessage: "Une erreur dans l'ajout de blame a été détectée.",
+            user: await userModel.findById(req.session.user._id),
+            title: "Empleez - Dashboard",
+        });
+    }
+});
+
+// Decrease Blame___________________________________________________________
+employeeRouter.get("/decreaseBlame/:employeeid", authguard, async (req, res) => {
+    try {
+        console.log("hello");
+        await employeeModel.findByIdAndUpdate(
+            req.params.employeeid,
+            { $inc: { employeeBlame: -1 } },
+            { new: true }
+        );
+        let employee = await employeeModel.findById(req.params.employeeid);
+        res.render("layouts/addEmployee.twig", {
+            title: "Empleez - Modifier un employé",
+            user: await userModel.findById(req.session.user._id),
+            employee: employee,
+        });
     } catch (error) {
         console.error(error);
         res.render("pages/dashboard.twig", {

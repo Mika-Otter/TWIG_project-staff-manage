@@ -7,7 +7,7 @@
 
 {% block div %}
 <div class="form__ctn">
-    <form method="post" {% if employee %} action="/modifyEmployee" {% else %} action= "/addEmployee" {% endif %}>
+    <form method="post" {% if employee %} action="/updateEmployee/{{employee.id}}" {% else %} action= "/addEmployee" {% endif %}>
         <div id="ImgNameFirstName">
             <img src="/assets/img/token.png" alt="token" />
             <div class="name__ctn">
@@ -31,11 +31,26 @@
             <input type="text" name="employeeStatu" id="employeeStatu" placeholder="Statu" {% if employee %} value={{employee.employeeStatu}}  {% endif %}/>
         </div>
 
-        <div class="action__box">
-         <div class="blame__ctn">
-                <a>
-                    <img src="/assets/img/blame-grey.png" alt="blame-grey" id="blame">
-                </a>    
+       <div class="action__box">
+            <div class="blame__ctn">
+                {% if (employee.employeeBlame == 0) %}
+                    <img src="/assets/img/blame-grey.png" alt="blame-grey" id="blame">  
+                {% elseif (employee.employeeBlame == 1) %}
+                <a href="/decreaseBlame/{{ employee.id }}">
+                    <img src="/assets/img/blame-orange.png" alt="blame-orange" id="blame">  
+                </a>
+                {% elseif (employee.employeeBlame == 2) %}
+                <a href="/decreaseBlame/{{ employee.id }}">
+                    <img src="/assets/img/blame-red.png" alt="blame-red" id="blame">  
+                </a>
+                {% else %}
+                 <a href="/decreaseBlame/{{ employee.id }}">
+                    <img src="/assets/img/blame-grey.png" alt="blame-red" id="blame">  
+                </a>
+                {% endif %}
+            <div class="blame__span">
+                <span>-</span>
+            </div>
             </div>
             <div class="valid_delete__ctn">
            
@@ -50,11 +65,18 @@
                 </button>
             </div>
             </div>
-            <div class="surveillance__ctn">
-                <a>
-                    <img src="/assets/img/Surveillance.png" alt="surveillance" id="surveillance">
-                </a>
-            </div>
+           <div class="surveillance__ctn">
+                {% if (employee.employeeBlame == 0) %}
+                    <img src="/assets/img/Surveillance.png" alt="surveillance" id="surveillance" />
+                {% elseif (employee.employeeBlame == 1) %}
+                    <img src="/assets/img/surveillance-orange.png" alt="surveillance" id="surveillance" />
+                {% elseif (employee.employeeBlame == 2) %}
+                    <img src="/assets/img/surveillance-red.png" alt="surveillance" id="surveillance" />
+                {% else %}
+                    <img src="/assets/img/Surveillance.png" alt="surveillance" id="surveillance" />
+                {% endif %}
+                
+            </div>    
             
         </div>
         
