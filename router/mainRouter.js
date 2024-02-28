@@ -67,6 +67,18 @@ userRouter.post("/home", async (req, res) => {
     }
 });
 
+// Disconnect user____________________________________________________
+userRouter.get("/disconnect", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Error destroying session:", err);
+            res.redirect("/dashboard");
+        } else {
+            res.redirect("/home");
+        }
+    });
+});
+
 //Employee Adding______________________________________________________
 employeeRouter.get("/addEmployee", authguard, async (req, res) => {
     res.render("layouts/addEmployee.twig", {
@@ -190,10 +202,13 @@ employeeRouter.get("/deleteEmployee/:employeeid", authguard, async (req, res) =>
 employeeRouter.get("/modifyEmployee/:employeeid", authguard, async (req, res) => {
     try {
         let employee = await employeeModel.findById(req.params.employeeid);
-        // console.log(employee);
+        let user = await userModel.findById(req.session.user._id).populate({
+            path: "employeeList",
+            match: { _id: { $ne: req.params.employeeid } },
+        });
         res.render("layouts/addEmployee.twig", {
             title: "Empleez - Modifier un employé",
-            user: await userModel.findById(req.session.user._id),
+            user: user,
             employee: employee,
         });
         console.log("hello");

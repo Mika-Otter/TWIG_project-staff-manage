@@ -29,13 +29,11 @@
     align-items: center;
     @media screen and (min-width: 1701px) {
         margin-top: -17vh;
-        height: 60vh;
         width: 14vw;
     }
 }
 
 form {
-    height: 100%;
     padding: 20px;
     padding-bottom: 0;
     width: 17vw;
@@ -110,6 +108,9 @@ form {
     color: var(--color-cards);
     border-radius: 50px;
     transition: 0.2s ease-in-out;
+    @media screen and (max-width: 1701px) {
+        font-size: 1vw;
+    }
 }
 
 #connexionBtn:hover {
@@ -122,9 +123,14 @@ form {
     border: none;
     background: none;
     font-size: 0.6vw;
+    width: 100%;
+    text-align: center;
 
     color: var(--color-text-blue);
     transition: 0.5s ease-in-out;
+    @media screen and (max-width: 1701px) {
+        font-size: 0.8vw;
+    }
 }
 
 #inscriptionBtn:hover {

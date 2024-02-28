@@ -21,43 +21,43 @@
                 <div class="form__input_ctn">
                     <label for="name">Nom</label>
                     <input type="text" name="name" id="name" />
-                    {% if error %}
+                    {% if error.name %}
                         <p>{{error.name.message}}</p>
                     {% endif %}
                 </div>
                 <div class="form__input_ctn">
                     <label for="SiretNum">Numéro SIRET</label>
                     <input type="text" name="SiretNum" id="SiretNum" />
-                       {% if error %}
+                       {% if error.SiretNum %}
                         <p>{{error.SiretNum.message}}</p>
                        {% endif %}
                 </div>
                   <div class="form__input_ctn">
                     <label for="directorName">Nom du directeur ou de la directrice</label>
                     <input type="text" name="directorName" id="directorName" />
-                    {% if error %}
+                    {% if error.directorName %}
                         <p>{{error.directorName.message}}</p>
                     {% endif %}
                 </div>
                 <div class="form__input_ctn">
                     <label for="email">Adresse e-mail</label>
                     <input type="email" name="email" id="email" />
-                       {% if error %}
-                           <p>{{error.mail.message}}</p>
+                       {% if error.email %}
+                           <p>{{error.email.message}}</p>
                        {% endif %}
                 </div>
                
                 <div class="form__input_ctn">
                     <label for="password">Mot de passe</label>
                     <input type="password" name="password" id="password" />
-                       {% if error %}
+                       {% if error.password %}
                            <p>{{error.password.message}}</p>
                        {% endif %}
                 </div>
                 <div class="form__input_ctn">
                     <label for="confirmPassword">Confirmer le mot de passe</label>
                     <input type="password" name="confirmPassword" id="confirmPassword" />
-                       {% if error %}
+                       {% if error.confirmPassword %}
                             <p>{{error.confirmPassword.message}}</p>
                        {% endif %}
                 </div>

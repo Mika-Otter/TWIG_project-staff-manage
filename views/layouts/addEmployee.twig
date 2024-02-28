@@ -35,17 +35,17 @@
        <div class="action__box">
             <div class="blame__ctn">
                 {% if (employee.employeeBlame == 0) %}
-                    <img src="/assets/img/blame-grey.png" alt="blame-grey" id="blame">  
+                    <img src="/assets/img/blame-grey.png" alt="b" id="blame">  
                 {% elseif (employee.employeeBlame == 1) %}
                 <a href="/decreaseBlame/{{ employee.id }}">
-                    <img src="/assets/img/blame-orange.png" alt="blame-orange" id="blame">  
+                    <img src="/assets/img/blame-orange.png" alt="" id="blame">  
                 </a>
                 {% elseif (employee.employeeBlame == 2) %}
                 <a href="/decreaseBlame/{{ employee.id }}">
-                    <img src="/assets/img/blame-red.png" alt="blame-red" id="blame">  
+                    <img src="/assets/img/blame-red.png" alt="" id="blame">  
                 </a>
                 {% else %}
-                    <img src="/assets/img/blame-grey.png" alt="blame-red" id="blame">  
+                    <img src="/assets/img/blame-grey.png" alt="" id="blame">  
                 {% endif %}
              {% if (employee.employeeBlame > 0) and employee %}
             <div class="blame__span">

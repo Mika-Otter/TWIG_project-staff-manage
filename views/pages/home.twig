@@ -22,14 +22,14 @@
                     <div class="form__input_ctn">
                         <label for="email">E-mail</label>
                         <input type="text" name="email" id="email" />
-                        {% if error %}
+                        {% if error.email %}
                                 <p>{{error.email}}</p>
                         {% endif %}
                     </div>
                     <div class="form__input_ctn">
                         <label for="password">Mot de passe</label>
                         <input type="password" name="password" id="password" />
-                            {% if error %}
+                            {% if error.password %}
                                 <p>{{error.password}}</p>
                             {% endif %}
                     </div>

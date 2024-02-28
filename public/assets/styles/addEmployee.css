@@ -14,6 +14,9 @@ form {
     font-weight: 600;
     font-size: 0.8vw;
     border-bottom: 0.01rem solid var(--color-text-blue);
+    @media screen and (max-width: 1700px) {
+        font-size: 1.2vw;
+    }
 }
 
 .name__ctn > input:focus {
@@ -32,6 +35,9 @@ form {
     font-weight: 400;
     font-size: 0.7vw;
     border-bottom: 0.01rem solid var(--color-text-blue);
+    @media screen and (max-width: 1700px) {
+        font-size: 0.9vw;
+    }
 }
 
 .details > input:focus {
@@ -44,6 +50,9 @@ form {
     font-size: 1.5vw;
     color: var(--color-text-blue);
     font-weight: 900;
+    @media screen and (max-width: 1700px) {
+        font-size: 1.7vw;
+    }
 }
 
 .action__box {
@@ -75,12 +84,17 @@ form {
 
 #surveillance {
     width: 1vw;
+    /* border: 2px solid red; */
+    @media screen and (max-width: 1700px) {
+        width: 1.3vw;
+    }
 }
 
 .valid_delete__ctn {
     display: flex;
     justify-content: center;
-    gap: 5px;
+
+    gap: 10px;
 
     width: 50%;
 }
@@ -97,4 +111,8 @@ form {
 #delete {
     width: 1.3vw;
     height: 1.3vw;
+    @media screen and (max-width: 1700px) {
+        width: 1.5vw;
+        height: 1.5vw;
+    }
 }

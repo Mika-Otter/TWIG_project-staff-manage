@@ -25,14 +25,17 @@ h4 {
     text-transform: uppercase;
 }
 
-.filter__box {
-    width: 10vw;
-    height: 2vh;
+#filter__box {
+    margin-top: 1vh;
+    width: 18vw;
+    height: 3vh;
     background-color: var(--color-cards);
     border-radius: 8px;
     padding: 5px 10px;
     font-family: "Poppins";
     font-family: 0.3vw;
+    color: var(--color-text-dashboard);
+    box-shadow: 0px -1px 12px -3px rgba(0, 0, 0, 0.05);
 }
 
 .logo__add {
@@ -73,16 +76,6 @@ h4 {
     text-transform: uppercase;
 }
 
-.filter__box {
-    width: 10vw;
-    height: 2vh;
-    background-color: var(--color-cards);
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-family: "Poppins";
-    font-family: 0.3vw;
-}
-
 .logo__add {
     display: flex;
     width: 15vw;
@@ -113,13 +106,17 @@ h4 {
 }
 
 .cardsBox {
-    width: 70%;
+    width: 83%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-row-gap: 2vh;
+    @media screen and (min-width: 1700px) {
+        width: 70%;
+    }
 }
 
 .form__ctn {
+    box-shadow: 0px -1px 12px -3px rgba(0, 0, 0, 0.05);
     padding: 0 15px;
     display: flex;
     flex-direction: column;
@@ -128,6 +125,10 @@ h4 {
     width: 14vw;
     height: 12vw;
     background-color: var(--color-cards);
+    @media screen and (max-width: 1700px) {
+        width: 16vw;
+        height: 29vh;
+    }
 }
 
 #ImgNameFirstName {
@@ -139,6 +140,9 @@ h4 {
     align-items: center;
     justify-content: center;
     gap: 20px;
+    @media screen and (max-width: 1700px) {
+        margin-top: 13px;
+    }
     /* border: 2px solid blue; */
 }
 
@@ -149,6 +153,9 @@ h4 {
     margin-top: -7%;
     height: 50%;
     width: 70%;
+    @media screen and (max-width: 1700px) {
+        margin-top: -5%;
+    }
     /* border: 2px solid rgb(153, 210, 56); */
 }
 
@@ -160,6 +167,9 @@ h4 {
     font-family: "Poppins";
     font-weight: 600;
     font-size: 0.8vw;
+    @media screen and (max-width: 1700px) {
+        font-size: 1vw;
+    }
     /* border: 2px solid rgb(18, 18, 42); */
 }
 
@@ -168,6 +178,9 @@ h4 {
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: 50%;
+    @media screen and (max-width: 1700px) {
+        width: 6vw;
+    }
 }
 
 .position__ctn {
@@ -195,6 +208,11 @@ h4 {
     text-align: center;
     border-radius: 50px;
     border: none;
+    @media screen and (max-width: 1700px) {
+        width: 85%;
+        height: 4vh;
+        font-size: 1vw;
+    }
     /* border: 2px solid rgb(14, 52, 16); */
 }
 
@@ -216,6 +234,9 @@ h4 {
     font-family: "Poppins";
     font-weight: 400;
     font-size: 0.7vw;
+    @media screen and (max-width: 1700px) {
+        font-size: 0.9vw;
+    }
     /* border: 2px solid rgb(180, 58, 169); */
 }
 
@@ -226,6 +247,10 @@ h4 {
     font-size: 1.5vw;
     color: var(--color-text-blue);
     font-weight: 900;
+    @media screen and (max-width: 1700px) {
+        font-size: 1.7vw;
+    }
+
     /* border: 2px solid rgb(78, 17, 17); */
 }
 
@@ -243,6 +268,9 @@ h4 {
 #surveillance {
     /* border: 2px solid red; */
     width: 1vw;
+    @media screen and (max-width: 1700px) {
+        width: 1.5vw;
+    }
 }
 
 .modify__ctn {
@@ -266,6 +294,10 @@ h4 {
 #blame {
     width: 1vw;
     height: 1vw;
+    @media screen and (max-width: 1700px) {
+        width: 1.5vw;
+        height: 1.5vw;
+    }
 }
 
 .blame__ctn {

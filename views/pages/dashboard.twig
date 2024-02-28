@@ -4,20 +4,21 @@
  <link rel="stylesheet" href="/assets/styles/dashboard.css">
 {% endblock %}
 
+
+
 {% block main %}
 <main>
     <h4>Liste des employés</h4>
-    <div class="filter__box">
-  
+    <div id="filter__box">
         <label for="filter__box">Filtre :</label>
-        <select name="filter" id="filter__box">
-            <option value="none">Aucun</option>
+        <select name="filter" id="filter__ctn">
+            <option value="none">Choisir</option>
             <option value="position">Poste</option>
             <option value="name">Nom</option>
         </select>
 {% block scripts %}
     <script>
-      let filter = document.getElementById('filter__box');
+      let filter = document.getElementById('filter__ctn');
       filter.addEventListener("change", () => {
             let filterValue = filter.value;
             console.log("heelo")
@@ -33,6 +34,9 @@
     </script>
 {% endblock %}
     </div>
+
+    {% include "../components/userProfil.twig" %}
+    
     <div class="logo__add">
         <a href="/addEmployee" class="add__employee">
             <img src="/assets/img/Logo-Add.png" alt="add" id="add__img" />
@@ -66,19 +70,19 @@
             <div class="blame__ctn">
                 {% if (employee.employeeBlame == 0) %}
                 <a href="/addBlame/{{ employee.id }}">
-                    <img src="/assets/img/blame-grey.png" alt="blame-grey" id="blame">  
+                    <img src="/assets/img/blame-grey.png" alt="" id="blame">  
                 </a>
                 {% elseif (employee.employeeBlame == 1) %}
                 <a href="/addBlame/{{ employee.id }}">
-                    <img src="/assets/img/blame-orange.png" alt="blame-orange" id="blame">  
+                    <img src="/assets/img/blame-orange.png" alt="" id="blame">  
                 </a>
                 {% elseif (employee.employeeBlame == 2) %}
                 <a href="/addBlame/{{ employee.id }}">
-                    <img src="/assets/img/blame-red.png" alt="blame-red" id="blame">  
+                    <img src="/assets/img/blame-red.png" alt="" id="blame">  
                 </a>
                 {% else %}
                  <a href="/addBlame/{{ employee.id }}">
-                    <img src="/assets/img/blame-grey.png" alt="blame-red" id="blame">  
+                    <img src="/assets/img/blame-grey.png" alt="" id="blame">  
                 </a>
                 {% endif %}
         
