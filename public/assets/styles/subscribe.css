@@ -8,52 +8,6 @@
     );
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.title__section {
-    height: 40vh;
-    width: 95%;
-
-    display: flex;
-    flex-direction: column;
-}
-
-.title__ctn {
-    width: 100%;
-}
-h1 {
-    font-family: "Poppins";
-    font-size: 7vw;
-    margin: 0;
-    color: var(--color-title);
-}
-
-h2 {
-    margin: 0;
-    margin-top: -100px;
-    font-family: "Poppins";
-    font-size: 7vw;
-    background: var(--color-title-gradiant);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-span {
-    font-family: "Poppins";
-    font-size: 1.2vw;
-    width: 100%;
-    height: 1.5vw;
-    margin: 0;
-    /* margin-top: -20px; */
-    color: var(--color-title);
-}
-
 .subscribe__box {
     display: flex;
     flex-direction: column;
@@ -62,27 +16,40 @@ span {
 }
 
 .subscribe__form__ctn {
-    margin-top: -2vh;
-    width: 15vw;
+    margin-top: -30vh;
+    margin-left: -7vw;
+    /* border: 2px solid red; */
+    width: 19vw;
     border-radius: 23px;
-    height: 46vh;
     padding: 0 1vw;
     background-color: var(--color-cards);
     box-shadow: 0px -1px 12px -3px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    @media screen and (min-width: 1701px) {
+        margin-top: -17vh;
+        height: 60vh;
+        width: 14vw;
+    }
 }
 
 form {
+    height: 100%;
     padding: 20px;
-    height: 32vh;
+    padding-bottom: 0;
+    width: 17vw;
+    margin: 0;
     display: flex;
     /* border: 2px solid blue; */
     flex-direction: column;
     font-family: "Poppins";
-    font-size: 0.7vw;
+    font-size: 0.9vw;
     font-weight: 400;
-    margin-bottom: 40px;
+    @media screen and (min-width: 1701px) {
+        width: 13vw;
+        font-size: 0.7vw;
+    }
 }
 
 .form__input_ctn {
@@ -102,7 +69,6 @@ form {
 }
 
 .form__input_ctn > input {
-    font-size: 0.7vw;
     font-family: "Poppins";
     color: var(--color-text-blue);
     padding-top: 5px;
@@ -110,6 +76,12 @@ form {
     background: none;
     border: none;
     border-bottom: 0.05rem solid var(--color-text-blue);
+    font-size: 0.9vw;
+    font-weight: 500;
+    @media screen and (min-width: 1701px) {
+        width: 13vw;
+        font-size: 0.7vw;
+    }
 }
 
 .form__input_ctn > input:focus {

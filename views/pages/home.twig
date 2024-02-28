@@ -8,7 +8,7 @@
 <main>
     <div class="title__section">
         <div class="title__ctn">
-            <h1>Welcome,</h1>
+            <h1>Welcome</h1>
             <h2>in Empleez !</h2>
         </div>
         <span>Manage your team and more.</span>
@@ -20,12 +20,18 @@
             
                 <form method="post" action="/home">
                     <div class="form__input_ctn">
-                        <label for="mail">E-mail</label>
-                        <input type="text" name="mail" id="mail" />
+                        <label for="email">E-mail</label>
+                        <input type="text" name="email" id="email" />
+                        {% if error %}
+                                <p>{{error.email}}</p>
+                        {% endif %}
                     </div>
                     <div class="form__input_ctn">
                         <label for="password">Mot de passe</label>
                         <input type="password" name="password" id="password" />
+                            {% if error %}
+                                <p>{{error.password}}</p>
+                            {% endif %}
                     </div>
                     <div class="btn__ctn">
                         <button type="submit" id="connexionBtn">Se connecter</button>

@@ -12,17 +12,27 @@ const userSchema = mongoose.Schema({
             message: "Entrez un nom valide",
         },
     },
-    firstName: {
+    SiretNum: {
         type: String,
-        required: [true, "Le prénom est requis"],
+        required: [true, "Le numéro SIRET est requis."],
+        validate: {
+            validator: function (v) {
+                return /^[0-9]{14}$/.test(v);
+            },
+            message: "Entrez un numéro SIRET valide à 14 chiffres sans espaces.",
+        },
+    },
+    directorName: {
+        type: String,
+        required: [true, "Le nom du directeur est requis"],
         validate: {
             validator: function (v) {
                 return /^[a-zA-ZÀ-ÖØ-öø-ÿ\s'-]+$/u.test(v);
             },
-            message: "Entrez un prénom valide",
+            message: "Entrez un nom valide",
         },
     },
-    mail: {
+    email: {
         type: String,
         required: [true, "L'email est requis"],
         validate: {
@@ -32,6 +42,7 @@ const userSchema = mongoose.Schema({
             message: "Votre email n'est pas valide, avez-vous fait une erreur ?",
         },
     },
+
     password: {
         type: String,
         required: [true, "Le mot de passe est requis"],
@@ -39,6 +50,8 @@ const userSchema = mongoose.Schema({
             validator: function (v) {
                 return /^[a-zA-Z0-9!?.\-_éà]{7,}$/u.test(v);
             },
+            message:
+                'Le mot de passe doit contenir au moins 7 caractères. \n Autorisé : ajuscules, minuscules, chiffres et caractères spéciaux "! ? . - _ é à"',
         },
     },
     confirmPassword: {
@@ -61,9 +74,9 @@ const userSchema = mongoose.Schema({
 
 userSchema.pre("validate", async function (next) {
     try {
-        const existingUser = await this.constructor.findOne({ mail: this.mail });
+        const existingUser = await this.constructor.findOne({ email: this.email });
         if (existingUser) {
-            this.invalidate("mail", "Cet email est déjà enregistré.");
+            this.invalidate("email", "eCet email est déjà enregistré.");
         }
         next();
     } catch (error) {
@@ -81,6 +94,20 @@ userSchema.pre("save", function (next) {
             return next(error);
         }
         this.password = hash;
+        next();
+    });
+});
+
+userSchema.pre("save", function (next) {
+    if (!this.isModified("confirmPassword")) {
+        return next();
+    }
+
+    bcrypt.hash(this.confirmPassword, 10, (error, hash) => {
+        if (error) {
+            return next(error);
+        }
+        this.confirmPassword = hash;
         next();
     });
 });

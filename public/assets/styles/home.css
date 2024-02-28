@@ -22,6 +22,7 @@ main {
     width: 100%;
 }
 h1 {
+    z-index: 1;
     font-family: "Poppins";
     font-size: 7vw;
     margin: 0;
@@ -30,13 +31,16 @@ h1 {
 
 h2 {
     margin: 0;
-    margin-top: -100px;
+    margin-top: -4.2vw;
     font-family: "Poppins";
     font-size: 7vw;
     background: var(--color-title-gradiant);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    @media screen and (min-width: 1701px) {
+        font-size: 7.3vw;
+    }
 }
 
 span {
@@ -50,28 +54,30 @@ span {
 }
 
 .form__ctn {
-    margin-top: -2vh;
-    margin-left: -7vh;
+    margin-top: -5vh;
+    margin-left: -7vw;
     width: 15vw;
     border-radius: 23px;
-    height: 26vh;
     padding: 0 1vw;
     background-color: var(--color-cards);
     box-shadow: 0px -1px 12px -3px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 form {
     padding: 20px;
-    height: 12vh;
     display: flex;
     /* border: 2px solid blue; */
     flex-direction: column;
     font-family: "Poppins";
-    font-size: 0.7vw;
+    font-size: 0.9vw;
     font-weight: 400;
-    margin-bottom: 40px;
+    @media screen and (min-width: 1701px) {
+        width: 13vw;
+        font-size: 0.7vw;
+    }
 }
 
 .form__input_ctn {
@@ -84,8 +90,13 @@ form {
     color: var(--color-title);
 }
 
+.form__input_ctn > p {
+    height: 13px;
+    font-size: 9px;
+    color: rgb(239, 61, 61);
+}
+
 .form__input_ctn > input {
-    font-size: 0.7vw;
     font-family: "Poppins";
     color: var(--color-text-blue);
     padding-top: 5px;
@@ -93,6 +104,12 @@ form {
     background: none;
     border: none;
     border-bottom: 0.05rem solid var(--color-text-blue);
+    font-size: 0.9vw;
+    font-weight: 400;
+    @media screen and (min-width: 1701px) {
+        width: 13vw;
+        font-size: 0.7vw;
+    }
 }
 
 .form__input_ctn > input:focus {
@@ -107,7 +124,6 @@ form {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding-bottom: 20px;
     margin-top: 3vh;
 }
 
@@ -115,20 +131,34 @@ form {
     border: none;
     width: 8vw;
     padding: 10px 0;
-    font-size: 0.7vw;
     background: var(--color-title-gradiant);
     color: var(--color-cards);
     border-radius: 50px;
+    font-size: 0.9vw;
+    font-weight: 400;
+    @media screen and (min-width: 1701px) {
+        width: 13vw;
+        font-size: 0.7vw;
+    }
+}
+
+#connexionBtn:hover {
+    cursor: pointer;
 }
 
 #inscriptionBtn {
     font-family: "Poppins";
     border: none;
     background: none;
-    font-size: 0.6vw;
 
     color: var(--color-text-blue);
     transition: 0.5s ease-in-out;
+    font-size: 0.8vw;
+    font-weight: 400;
+    @media screen and (min-width: 1701px) {
+        width: 13vw;
+        font-size: 0.6vw;
+    }
 }
 
 #inscriptionBtn:hover {
