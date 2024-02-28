@@ -1,50 +1,55 @@
-{% extends "../pages/dashboard.twig" %} {% block style %}
-<link rel="stylesheet" href="./assets/styles/modifyEmployee.css" />
-{% endblock %} {% block div %}
+{% extends "../pages/dashboard.twig" %} 
+
+{% block style %}
+<link rel="stylesheet" href="/assets/styles/modifyEmployee.css" />
+{% endblock %} 
+
+{% block div %}
 <div class="form__ctn">
-    <form method="post" action="">
+    <form method="post" {% if employee %} action="/modifyEmployee" {% else %} action= "/addEmployee" {% endif %}>
         <div id="ImgNameFirstName">
-            <img src="./assets/img/token.png" alt="token" />
+            <img src="/assets/img/token.png" alt="token" />
             <div class="name__ctn">
-            <input type="text" name="employeeName" id="employeeName" placeholder="Nom" />
+            <input type="text" name="employeeName" id="employeeName" placeholder="Nom" value={{employee.employeeName}} />
             <input
                 type="text"
                 name="employeeFirstName"
                 id="employeeFirstName"
                 placeholder="Prénom"
+                value={{employee.employeeFirstName}}
             /></div>
             
         </div>
-        <div class="position__ctn"> <input type="text" name="employeePosition" id="employeePosition" placeholder="Poste" /></div>
+        <div class="position__ctn"> <input type="text" name="employeePosition" id="employeePosition" placeholder="Poste" value={{employee.employeePosition}} /></div>
     
         <div class="details">
-            <input type="text" name="employeeSalary" id="employeeSalary" placeholder="Salaire" />
+            <input type="text" name="employeeSalary" id="employeeSalary" placeholder="Salaire" value={{employee.employeeSalary}}/>
             <span>|</span>
-            <input type="text" name="employeeStatu" id="employeeStatu" placeholder="Statu" />
+            <input type="text" name="employeeStatu" id="employeeStatu" placeholder="Statu" value={{employee.employeeStatu}} />
         </div>
 
         <div class="action__box">
          <div class="blame__ctn">
                 <a>
-                    <img src="./assets/img/blame-grey.png" alt="blame-grey" id="blame">
+                    <img src="/assets/img/blame-grey.png" alt="blame-grey" id="blame">
                 </a>    
             </div>
             <div class="valid_delete__ctn">
            
             <div class="delete">
                 <a href="/dashboard">
-                    <img src="./assets/img/XCircle.png" alt="delete" id="delete">
+                    <img src="/assets/img/XCircle.png" alt="delete" id="delete">
                 </a>
             </div>
             <div class="add">
-                <button type="submit">
-                    <img src="./assets/img/CheckCircleOutline.png" alt="validate" id="validate">
+                <button type="submit" id="validate__btn">
+                    <img src="/assets/img/CheckCircleOutline.png" alt="validate" id="validate">
                 </button>
             </div>
             </div>
             <div class="surveillance__ctn">
                 <a>
-                    <img src="./assets/img/Surveillance.png" alt="surveillance" id="surveillance">
+                    <img src="/assets/img/Surveillance.png" alt="surveillance" id="surveillance">
                 </a>
             </div>
             

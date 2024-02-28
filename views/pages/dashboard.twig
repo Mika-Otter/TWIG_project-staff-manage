@@ -1,7 +1,9 @@
 {% extends "../base.twig" %}
 
+
 {% block style %}
-<link rel="stylesheet" href="./assets/styles/dashboard.css">
+<link rel="stylesheet" href="/assets/styles/dashboard.css">
+
 {% endblock %}
 
 
@@ -19,17 +21,18 @@
     </div>
     <div class="logo__add">
         <a href="/addEmployee" class="add__employee">
-            <img src="./assets/img/Logo-Add.png" alt="add" id="add__img" />
+            <img src="/assets/img/Logo-Add.png" alt="add" id="add__img" />
             <span id="add__employeeText"> Ajouter un employé </span>
         </a>
     </div>
-      {% block div %}
-     {% endblock %}
+      
     <section class="cardsBox">
+    {% block div %}
+     {% endblock %}
      {% for employee in user.employeeList %}
      <div class="form__ctn">
         <div id="ImgNameFirstName">
-            <img src="./assets/img/token.png" alt="token" />
+            <img src="/assets/img/token.png" alt="token" />
             <div class="name__ctn">
             <p>{{ employee.employeeName }}</p>
             <p>{{ employee.employeeFirstName }}</p>
@@ -46,17 +49,17 @@
         <div class="action__box">
             <div class="blame__ctn">
                 <a href="/addBlame">
-                    <img src="./assets/img/blame-grey.png" alt="blame-grey" id="blame">
+                    <img src="/assets/img/blame-grey.png" alt="blame-grey" id="blame">
                 </a>    
             </div>
             <div class="modify__ctn">
-                <a href="/modifyEmployee" id="modify__link">
-                    <img src="./assets/img/Modify.png" alt="modif" id="modify">
+                <a href="/modifyEmployee/{{employee.id}}" id="modify__link">
+                    <img src="/assets/img/Modify.png" alt="modif" id="modify">
                 </a>
             </div>
             <div class="surveillance__ctn">
                 <a href="/addSurveillance">
-                    <img src="./assets/img/Surveillance.png" alt="surveillance" id="surveillance">
+                    <img src="/assets/img/Surveillance.png" alt="surveillance" id="surveillance">
                 </a>
             </div>       
         </div>
