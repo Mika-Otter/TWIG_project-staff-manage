@@ -2,7 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const multer = require("multer");
-const { userRouter, employeeRouter } = require("./router/mainRouter");
+const { userRouter } = require("./router/userRouter");
+const { employeeRouter } = require("./router/employeeRouter");
 require("dotenv").config();
 
 const app = express();
