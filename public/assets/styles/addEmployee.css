@@ -66,6 +66,7 @@ form {
 
 .blame__span {
     margin: 0;
+    line-height: 37px;
     font-family: "Poppins";
     font-weight: 600;
     font-size: 1vw;

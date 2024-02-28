@@ -44,13 +44,13 @@
                     <img src="/assets/img/blame-red.png" alt="blame-red" id="blame">  
                 </a>
                 {% else %}
-                 <a href="/decreaseBlame/{{ employee.id }}">
                     <img src="/assets/img/blame-grey.png" alt="blame-red" id="blame">  
-                </a>
                 {% endif %}
+             {% if (employee.employeeBlame > 1) and employee %}
             <div class="blame__span">
                 <span>-</span>
             </div>
+             {% endif %}
             </div>
             <div class="valid_delete__ctn">
            

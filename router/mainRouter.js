@@ -156,7 +156,7 @@ employeeRouter.get("/modifyEmployee/:employeeid", authguard, async (req, res) =>
 
 employeeRouter.post("/updateEmployee/:employeeid", authguard, async (req, res) => {
     try {
-        let updatedEmployee = await employeeModel.findOneAndUpdate(
+        await employeeModel.findOneAndUpdate(
             { _id: req.params.employeeid },
             { $set: req.body },
             { new: true }
@@ -172,11 +172,15 @@ employeeRouter.post("/updateEmployee/:employeeid", authguard, async (req, res) =
 employeeRouter.get("/addBlame/:employeeid", authguard, async (req, res) => {
     try {
         console.log("hello");
-        await employeeModel.findByIdAndUpdate(
+        let employee = await employeeModel.findByIdAndUpdate(
             req.params.employeeid,
             { $inc: { employeeBlame: 1 } },
             { new: true }
         );
+        if (employee.employeeBlame === 3) {
+            res.redirect(`/deleteEmployee/${req.params.employeeid}`);
+        }
+
         res.redirect("/dashboard");
     } catch (error) {
         console.error(error);

@@ -41,6 +41,7 @@ employeeSchema.post("deleteOne", async function (next) {
         { employeeList: { $in: [deleteEmployeeId] } },
         { $pull: { employeeList: deleteEmployeeId } }
     );
+
     next();
 });
 
