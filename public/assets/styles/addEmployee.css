@@ -123,6 +123,7 @@ form {
     background: var(--color-title-gradiant);
     color: var(--color-cards);
     font-family: "Poppins";
+    font-style: italic;
     font-weight: 600;
     font-size: 0.8vw;
     text-align: center;
@@ -179,15 +180,20 @@ form {
     height: 1vw;
 }
 
-.surveillance__ctn {
-}
-
 .valid_delete__ctn {
     display: flex;
     justify-content: center;
     gap: 5px;
 
     width: 50%;
+}
+
+#validate__btn {
+    all: unset;
+}
+
+#validate__btn:hover {
+    cursor: pointer;
 }
 
 #validate,

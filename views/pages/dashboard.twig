@@ -19,19 +19,19 @@
     </div>
     <div class="logo__add">
         <a href="/addEmployee" class="add__employee">
-        <img src="./assets/img/Logo-Add.png" alt="add" />
-        <span> Ajouter un employé </span>
+            <img src="./assets/img/Logo-Add.png" alt="add" id="add__img" />
+            <span id="add__employeeText"> Ajouter un employé </span>
         </a>
     </div>
-    <section class="cardsBox">
-    {% block div %}
+      {% block div %}
      {% endblock %}
+    <section class="cardsBox">
      {% for employee in user.employeeList %}
      <div class="form__ctn">
         <div id="ImgNameFirstName">
             <img src="./assets/img/token.png" alt="token" />
             <div class="name__ctn">
-            <p>Nom : {{ employee.employeeName }}</p>
+            <p>{{ employee.employeeName }}</p>
             <p>{{ employee.employeeFirstName }}</p>
         </div>
         </div>
@@ -44,11 +44,10 @@
         </div>
 
         <div class="action__box">
-         <div class="blame__ctn">
+            <div class="blame__ctn">
                 <a>
                     <img src="./assets/img/blame-grey.png" alt="blame-grey" id="blame">
                 </a>    
-            </div>
             </div>
             <div class="surveillance__ctn">
                 <a>
