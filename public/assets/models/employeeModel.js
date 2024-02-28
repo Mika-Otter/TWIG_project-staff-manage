@@ -32,6 +32,15 @@ employeeSchema.pre("save", async function (next) {
     }
 });
 
+employeeSchema.post("deleteOne", async function (next) {
+    const deleteEmployeeId = this.getQuery()._id;
+    await userModel.updateOne(
+        { employeeList: { $in: [deleteEmployeeId] } },
+        { $pull: { employeeList: deleteEmployeeId } }
+    );
+    next();
+});
+
 const employeeModel = mongoose.model("employee", employeeSchema);
 
 module.exports = employeeModel;

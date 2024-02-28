@@ -1,7 +1,6 @@
 {% extends "../pages/dashboard.twig" %} 
 
 {% block style %}
-<link rel="stylesheet" href="/assets/styles/dashboard.css">
 <link rel="stylesheet" href="/assets/styles/addEmployee.css" />
 {% endblock %} 
 
@@ -40,7 +39,7 @@
             <div class="valid_delete__ctn">
            
             <div class="delete">
-                <a href="/dashboard">
+                <a {% if employee %} href="/deleteEmployee/{{employee.id}}" {% else %}  href="/dashboard" {% endif %}>
                     <img src="/assets/img/XCircle.png" alt="delete" id="delete">
                 </a>
             </div>
@@ -60,4 +59,6 @@
         
     </form>
 </div>
+
 {% endblock %}
+

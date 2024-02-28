@@ -117,6 +117,22 @@ userRouter.get("/dashboard", authguard, async (req, res) => {
     }
 });
 
+// Delete Employee__________________________________________________
+
+employeeRouter.get("/deleteEmployee/:employeeid", authguard, async (req, res) => {
+    try {
+        await employeeModel.deleteOne({ _id: req.params.employeeid });
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.error(error);
+        res.render("pages/dashboard.twig", {
+            errorDelete: "Un problème est survenu pendant la suppression",
+            user: await userModel.findById(req.session.user._id).populate("employeeList"),
+            title: "Empleez - Dashboard",
+        });
+    }
+});
+
 // Modify Employee__________________________________________________
 employeeRouter.get("/modifyEmployee/:employeeid", authguard, async (req, res) => {
     try {

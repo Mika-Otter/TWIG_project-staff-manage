@@ -1,12 +1,5 @@
 {% extends "../base.twig" %}
 
-
-{% block style %}
-<link rel="stylesheet" href="/assets/styles/dashboard.css">
-
-{% endblock %}
-
-
 {% block main %}
 <main>
     <h4>Liste des employés</h4>
@@ -26,8 +19,9 @@
         </a>
     </div>
       
+     
     <section class="cardsBox">
-    {% block div %}
+     {% block div %}
      {% endblock %}
      {% for employee in user.employeeList %}
      <div class="form__ctn">
