@@ -99,7 +99,6 @@ userRouter.get("/dashboard", authguard, async (req, res) => {
 });
 
 // Sort by Name AZ________________________________________________
-
 userRouter.get("/dashboard/filterName", authguard, async (req, res) => {
     try {
         const userWithEmployees = await userModel
@@ -128,8 +127,7 @@ userRouter.get("/dashboard/filterName", authguard, async (req, res) => {
 });
 
 // Sort by position AZ______________________________________________
-
-userRouter.get("/dashboard/filterPosition", async (req, res) => {
+userRouter.get("/dashboard/:filter", async (req, res) => {
     try {
         const userWithEmployees = await userModel
             .findById(req.session.user._id)
@@ -147,8 +145,15 @@ userRouter.get("/dashboard/filterPosition", async (req, res) => {
             }
             return 0;
         });
+
+        const updatedUser = await userModel.findByIdAndUpdate(
+            req.session.user._id,
+            { $set: { filter: "filterPosition" } }, // Remplacez 'nouvelle_valeur' par la nouvelle valeur que vous souhaitez définir
+            { new: true }
+        );
+
         res.render("pages/dashboard.twig", {
-            user: userWithEmployees,
+            user: updatedUser,
             title: "Empleez - Dashboard Filter",
         });
     } catch (error) {

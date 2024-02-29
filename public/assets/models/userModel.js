@@ -70,6 +70,10 @@ const userSchema = mongoose.Schema({
             ref: "employee",
         },
     ],
+    filter: {
+        type: String,
+        default: "",
+    },
 });
 
 userSchema.pre("validate", async function (next) {

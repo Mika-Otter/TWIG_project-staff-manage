@@ -5,6 +5,35 @@ form {
     align-items: center;
 }
 
+.img__ctn {
+    position: relative;
+    width: 4.7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    border: 0.12vw solid var(--color-text-blue);
+    border-radius: 50%;
+    @media screen and (max-width: 1700px) {
+        width: 6vw;
+        border: 0.2vw solid var(--color-text-blue);
+    }
+}
+
+.img__ctn > label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.4vw;
+    font-family: "Poppins";
+    font-weight: 500;
+    color: var(--color-text-blue);
+    cursor: pointer;
+}
+.img__ctn label > img {
+    width: 1vw;
+}
+
 .name__ctn > input {
     width: 80%;
     border: none;
@@ -22,6 +51,10 @@ form {
 .name__ctn > input:focus {
     outline: none;
     border-bottom: 0.2rem solid var(--color-text-blue);
+}
+
+#inputName {
+    text-align: center;
 }
 
 .details > input {

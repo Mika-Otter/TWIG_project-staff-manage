@@ -73,19 +73,35 @@ employeeRouter.get("/modifyEmployee/:employeeid", authguard, async (req, res) =>
     }
 });
 
-employeeRouter.post("/updateEmployee/:employeeid", authguard, async (req, res) => {
-    try {
-        await employeeModel.findOneAndUpdate(
-            { _id: req.params.employeeid },
-            { $set: req.body },
-            { new: true }
-        );
-        res.redirect("/dashboard");
-    } catch (error) {
-        console.error(error);
-        res.redirect("/dashboard");
+employeeRouter.post(
+    "/updateEmployee/:employeeid",
+    upload.single("employeeImg"),
+    authguard,
+    async (req, res) => {
+        try {
+            if (req.multerError) {
+                throw { errorUpload: "Le fichier n'est pas valide" };
+            }
+            req.body.employeeImg = req.file.filename;
+            const updatedEmployee = await employeeModel.findByIdAndUpdate(
+                req.params.employeeid,
+                { $set: req.body },
+                { new: true }
+            );
+            console.log(req.body);
+
+            if (!updatedEmployee) {
+                console.log("Employee not found");
+                return res.status(404).send("Employee not found");
+            }
+            console.log("nice");
+            res.redirect("/dashboard");
+        } catch (error) {
+            console.error(error);
+            res.redirect("/dashboard");
+        }
     }
-});
+);
 
 // Add Blame___________________________________________________________
 employeeRouter.get("/addBlame/:employeeid", authguard, async (req, res) => {

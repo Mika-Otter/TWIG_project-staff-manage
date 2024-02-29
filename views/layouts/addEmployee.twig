@@ -9,8 +9,23 @@
 <div class="form__ctn" >
     <form method="post" enctype="multipart/form-data" {% if employee %} action="/updateEmployee/{{employee.id}}" {% else %} action= "/addEmployee" {% endif %} id="addEmployeeForm">
         <div id="ImgNameFirstName">
-            <img src="/assets/img/token.png" alt="token" />
-            <input type="file" id="btn__img" name="employeeImg"/>
+            <div class="img__ctn">
+                <input type="file" id="btn__img" name="employeeImg" style="display: none"/>
+                <label for="btn__img" id="clickImg"><img src="/assets/img/download.png" alt=""/> <span id="inputName">{% if employee %}Changer l'image{% else %}Ajouter une image{% endif %}</span></label>
+                
+            </div>
+            {% block script %}
+            <script>
+                let imgChange = document.getElementById("btn__img")
+                let newSelector = document.getElementById("inputName");
+                imgChange.addEventListener("change", (e) => {
+                    console.log("update img");
+                    let uploadFile = e.target.files[0].name;
+                    newSelector.textContent = uploadFile;
+                })
+
+            </script>
+            {% endblock %}
             <div class="name__ctn">
              <input
                 type="text"
