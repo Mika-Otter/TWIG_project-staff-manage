@@ -2,7 +2,6 @@ const employeeRouter = require("express").Router();
 const userModel = require("../public/assets/models/userModel");
 const employeeModel = require("../public/assets/models/employeeModel");
 const authguard = require("../services/authguard");
-const bcrypt = require("bcrypt");
 const upload = require("../services/upload");
 
 //Employee Adding______________________________________________________
