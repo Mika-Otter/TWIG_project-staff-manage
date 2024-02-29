@@ -4,6 +4,9 @@
  <link rel="stylesheet" href="/assets/styles/dashboard.css">
 {% endblock %}
 
+{% block title %}
+<title>{{title}}</title>
+{% endblock %}
 
 
 {% block main %}
@@ -13,26 +16,24 @@
         <label for="filter__box">Filtre :</label>
         <select name="filter" id="filter__ctn">
             <option value="none">Choisir</option>
-            <option value="position">Poste</option>
-            <option value="name">Nom</option>
+            <option value="filterPosition">Poste</option>
+            <option value="filterName">Nom</option>
         </select>
 {% block scripts %}
     <script>
       let filter = document.getElementById('filter__ctn');
       filter.addEventListener("change", () => {
             let filterValue = filter.value;
-            console.log("heelo")
-            console.log(filter.value)
-            if (filterValue === 'name') {
-                window.location.href = '/dashboard/filterName?filter=name';
-            } else if (filterValue === "position") {
-                window.location.href = '/dashboard/filterPosition?filter=position'; 
-            }else {
-               window.location.href = "/dashboard"
-            }
+            console.log("hello");
+            console.log(filter.value);
+            
+            let redirectURL = `/dashboard/${filterValue}`;
+            
+            window.location.href = redirectURL;
       });
     </script>
 {% endblock %}
+
     </div>
 
     {% include "../components/userProfil.twig" %}

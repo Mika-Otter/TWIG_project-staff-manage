@@ -82,7 +82,11 @@ employeeRouter.post(
             if (req.multerError) {
                 throw { errorUpload: "Le fichier n'est pas valide" };
             }
-            req.body.employeeImg = req.file.filename;
+            const currentEmployee = await employeeModel.findById(req.params.employeeid);
+            if (currentEmployee.employeeImg && req.file) {
+                req.body.employeeImg = req.file.filename;
+            }
+
             const updatedEmployee = await employeeModel.findByIdAndUpdate(
                 req.params.employeeid,
                 { $set: req.body },
@@ -155,9 +159,3 @@ employeeRouter.get("/decreaseBlame/:employeeid", authguard, async (req, res) => 
 module.exports = { employeeRouter };
 
 // END ===============================================================
-
-// employeeRouter.get("/test", async (req, res) => {
-//     res.render("layouts/addEmployee.twig", {
-//         title: "Empleez - Ajouter un-e employé-e",
-//     });
-// });

@@ -1,6 +1,5 @@
 const userRouter = require("express").Router();
 const userModel = require("../public/assets/models/userModel");
-const employeeModel = require("../public/assets/models/employeeModel");
 const authguard = require("../services/authguard");
 const bcrypt = require("bcrypt");
 
@@ -30,6 +29,7 @@ userRouter.get("/subscribe", async (req, res) => {
 userRouter.post("/subscribe", async (req, res) => {
     try {
         const user = new userModel(req.body);
+        console.log(req.body);
         await user.save();
         console.log("User Added");
         res.redirect("/home");
@@ -46,7 +46,7 @@ userRouter.post("/subscribe", async (req, res) => {
 userRouter.post("/home", async (req, res) => {
     console.log("ReqBody : ", req.body);
     try {
-        let user = await userModel.findOne({ mail: req.body.mail });
+        let user = await userModel.findOne({ email: req.body.email });
         if (user) {
             if (await bcrypt.compare(req.body.password, user.password)) {
                 req.session.user = user;
@@ -84,10 +84,9 @@ userRouter.get("/dashboard", authguard, async (req, res) => {
         const userWithEmployees = await userModel
             .findById(req.session.user._id)
             .populate("employeeList");
-        // console.log(userWithEmployees);
         res.render("pages/dashboard.twig", {
             user: userWithEmployees,
-            title: "Empleez - Dashboard.twig",
+            title: "Empleez - Dashboard",
         });
     } catch (error) {
         console.log(error);
@@ -118,7 +117,7 @@ userRouter.get("/dashboard/filterName", authguard, async (req, res) => {
         });
         res.render("pages/dashboard.twig", {
             user: userWithEmployees,
-            title: "Empleez - Dashboard Filter",
+            title: "Dashboard - Filter Name",
         });
     } catch (error) {
         console.error(error);
@@ -127,7 +126,7 @@ userRouter.get("/dashboard/filterName", authguard, async (req, res) => {
 });
 
 // Sort by position AZ______________________________________________
-userRouter.get("/dashboard/:filter", async (req, res) => {
+userRouter.get("/dashboard/filterPosition", async (req, res) => {
     try {
         const userWithEmployees = await userModel
             .findById(req.session.user._id)
@@ -146,15 +145,9 @@ userRouter.get("/dashboard/:filter", async (req, res) => {
             return 0;
         });
 
-        const updatedUser = await userModel.findByIdAndUpdate(
-            req.session.user._id,
-            { $set: { filter: "filterPosition" } }, // Remplacez 'nouvelle_valeur' par la nouvelle valeur que vous souhaitez définir
-            { new: true }
-        );
-
         res.render("pages/dashboard.twig", {
-            user: updatedUser,
-            title: "Empleez - Dashboard Filter",
+            user: userWithEmployees,
+            title: "Dashboard - Filter Position",
         });
     } catch (error) {
         console.error(error);
