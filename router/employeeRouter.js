@@ -14,10 +14,12 @@ employeeRouter.get("/addEmployee", authguard, async (req, res) => {
 
 employeeRouter.post("/addEmployee", authguard, upload.single("employeeImg"), async (req, res) => {
     try {
-        if (req.multerError) {
-            throw { errorUpload: "Le fichier n'est pas valide" };
+        if (req.file) {
+            if (req.multerError) {
+                throw { errorUpload: "Le fichier n'est pas valide" };
+            }
+            req.body.employeeImg = req.file.filename;
         }
-        req.body.employeeImg = req.file.filename;
         let employee = new employeeModel(req.body);
         employee._user = req.session.user._id;
         await employee.save();
