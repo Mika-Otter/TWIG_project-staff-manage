@@ -23,6 +23,10 @@ const employeeSchema = mongoose.Schema({
     employeeBlame: {
         type: Number,
     },
+    employeeImg: {
+        type: String,
+        default: "token.png",
+    },
 });
 
 employeeSchema.pre("save", async function (next) {

@@ -3,6 +3,7 @@ const userModel = require("../public/assets/models/userModel");
 const employeeModel = require("../public/assets/models/employeeModel");
 const authguard = require("../services/authguard");
 const bcrypt = require("bcrypt");
+const upload = require("../services/upload");
 
 //Employee Adding______________________________________________________
 employeeRouter.get("/addEmployee", authguard, async (req, res) => {
@@ -12,8 +13,12 @@ employeeRouter.get("/addEmployee", authguard, async (req, res) => {
     });
 });
 
-employeeRouter.post("/addEmployee", authguard, async (req, res) => {
+employeeRouter.post("/addEmployee", authguard, upload.single("employeeImg"), async (req, res) => {
     try {
+        if (req.multerError) {
+            throw { errorUpload: "Le fichier n'est pas valide" };
+        }
+        req.body.employeeImg = req.file.filename;
         let employee = new employeeModel(req.body);
         employee._user = req.session.user._id;
         await employee.save();

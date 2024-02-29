@@ -7,9 +7,10 @@
 
 {% block div %}
 <div class="form__ctn" >
-    <form method="post" {% if employee %} action="/updateEmployee/{{employee.id}}" {% else %} action= "/addEmployee" {% endif %} id="addEmployeeForm">
+    <form method="post" enctype="multipart/form-data" {% if employee %} action="/updateEmployee/{{employee.id}}" {% else %} action= "/addEmployee" {% endif %} id="addEmployeeForm">
         <div id="ImgNameFirstName">
             <img src="/assets/img/token.png" alt="token" />
+            <input type="file" id="btn__img" name="employeeImg"/>
             <div class="name__ctn">
              <input
                 type="text"
